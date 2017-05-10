@@ -1,2 +1,3 @@
 # hello-world
-Just another repository
+
+I am a PHD student. I like programming. I study GitHub. 
