@@ -1,0 +1,132 @@
+# Java
+
+package com.mycompany.banking;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author User
+ */
+public class BankingApp {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        BankAccount obj1=new BankAccount("MR. Dupont","BNB007");
+        obj1.showMenu();
+    }
+    
+}
+class BankAccount{
+    int balance;
+    int previousTransaction;
+    String customerName;
+    String customerId;
+    
+    BankAccount(String cname, String cid)
+    {
+        customerName=cname;
+        customerId=cid;
+    }
+void deposit (int amount)
+{
+    if (amount !=0){
+        balance=balance+amount;
+        previousTransaction =amount;
+        }
+}
+void withdraw(int amount)
+{
+    if (amount !=0)
+    {
+        balance=balance-amount;
+        previousTransaction=-amount;
+    }
+}
+void getPreviousTransaction()
+{
+    if (previousTransaction>0)
+    {
+        System.out.println("Déposé : "+ previousTransaction);
+    }
+    else if (previousTransaction< 0)
+    {
+        System.out.println("Retiré : "+ Math.abs(previousTransaction));
+    }
+    else
+    {
+     System.out.println(" Pas de transactions ");
+    }
+        
+}
+void showMenu()
+{
+    char option='\0';
+    Scanner scanner=new Scanner(System.in);
+    
+    System.out.println("Bienvenu "+ customerName);
+    System.out.println("Votre ID est "+ customerId);
+    System.out.println("\n ");
+    System.out.println("A. Vérifier le solde ");
+    System.out.println("B. Effectuer un dépôt ");
+    System.out.println("C. Effectuer un retrait ");
+    System.out.println("D. Afficher l'opération précedente ");
+    System.out.println("E. Quitter ");
+    
+    do
+    {
+        System.out.println("=================================");
+        System.out.println(" Choisissez une option");
+        System.out.println("==================================");
+        option=scanner.next().charAt(0);
+        System.out.println("\n");
+        
+        switch(option)
+        {
+            case 'A':
+                System.out.println("--------------------------------");
+                System.out.println("Solde = "+ balance);
+                System.out.println("---------------------------------");
+                System.out.println("\n");
+                break;
+                
+            case 'B':
+                System.out.println("----------------------------------");
+                System.out.println("Entrez le montant à déposer :");
+                System.out.println("----------------------------------");
+                int amount =scanner.nextInt();
+                deposit(amount);
+                System.out.println("\n");
+                break;
+                
+            case 'C':
+                System.out.println("------------------------------------");
+                System.out.println("Entrez le montant à retirer :");
+                System.out.println("----------------------------------");
+                int amount2 =scanner.nextInt();
+                withdraw(amount2);
+                System.out.println("\n");
+                break;
+            
+            case 'D':
+                System.out.println("----------------------------------");
+                getPreviousTransaction();
+                System.out.println("----------------------------------");
+                System.out.println("\n");
+                break;
+             
+            case 'E':
+                System.out.println("***********************************");
+                break;
+            default:
+                System.out.println(" Option impossible, veuillez réessayer");
+                break;
+        }
+        
+    }   while (option != 'E');
+        System.out.println(" Merci d'avoir utilisé nos services");
+  }
+}
